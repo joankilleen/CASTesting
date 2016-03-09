@@ -1,0 +1,35 @@
+<!--tag::initial[]-->
+<arquillian xmlns="http://jboss.org/schema/arquillian"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://jboss.org/schema/arquillian
+    http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+  <!--tag::tomeeconf[]-->
+  <container qualifier="tomee" default="false"> <!--1--> <!--2-->
+    <configuration>
+      <property name="httpPort">-1</property> <!--3-->
+      <property name="stopPort">-1</property> <!--4-->
+    </configuration>
+  </container>
+  <!--end::tomeeconf[]-->
+  <!--tag::glassfishconf[]-->
+  <container qualifier="glassfish">
+    <configuration>
+      <property name="bindHttpPort">8182</property> <!--1-->
+    </configuration>
+  </container>
+
+  <container qualifier="glassfish-remote" default="true">
+    <configuration>
+      <property name="glassFishHome">/Applications/NetBeans/glassfish-4.1.1/</property>
+      <property name="adminHost">localhost</property>
+      <property name="adminPort">4848</property>
+      <property name="adminUser">admin</property>
+      <property name="adminPassword">admin</property>
+    </configuration>
+  </container>
+
+
+  <!--end::glassfishconf[]-->
+</arquillian>
+<!--end::initial[]-->

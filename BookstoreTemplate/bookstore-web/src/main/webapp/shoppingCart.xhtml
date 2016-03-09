@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+
+        <ui:composition template="template.xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+            <ui:define name="header">
+                <ui:include src="header.xhtml">
+                    <ui:param name="pageHeading" value="#{texts.shoppingCart}"/>
+                </ui:include>
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="nmain" rendered="#{not empty shoppingCart.items}">    
+                    <h:dataTable value="#{shoppingCart.items}" var="item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.title}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.book.title}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.unitPrice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.book.price}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.quantity}"/>
+                            </f:facet>
+                            <h:inputText id="quantity" value="#{item.quantity}" required="true" validatorMessage="#{messages.minValueError}" requiredMessage="#{messages.emptyValueError}" styleClass="quantityInput">
+                                <f:validateLongRange minimum="1"/>
+                            </h:inputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.itemPrice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.price}"/>                       
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:commandButton value="#{texts.delete}" immediate="true" action="#{shoppingCart.deleteItem(item)}"/>  
+                        </h:column>
+                        <h:column>
+                            <h:message for="quantity" styleClass="info"/>
+                        </h:column>
+                    </h:dataTable>
+                    <br></br><br></br>
+                    <h:outputText styleClass="important" value ="#{texts.totalPrice}: #{shoppingCart.totalPrice}"/>   
+                    <br></br><br></br>
+                    <h:commandButton value="#{texts.update}" rendered="#{not empty shoppingCart.items}" />
+                </h:form>
+                <h:form id="formEmpty">
+                    <h:outputLabel value="#{texts.emptyShoppingCart}" styleClass="info" rendered="#{empty shoppingCart.items}"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>         
+    </h:body>
+</html>
+

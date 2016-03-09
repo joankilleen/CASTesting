@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<dataset>
+
+    <album id="100" name="High Voltage" price="5.99"/>
+    <album id="101" name="Highway To Hell" price="7.99"/>
+    <album id="102" name="Back in Black" price="3.99"/>
+</dataset>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="EnterpriseMusicStoreTest" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <mapping-file>META-INF/queries.xml</mapping-file>
+        <jar-file>${basedir}/../domain/target</jar-file> <!-- Apply Maven resource filtering to set the directory containing entities (see POM) -->
+        <!--<class>org.musicstore.domain.entities.Album</class>-->
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <properties>
+
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+
+            <!-- ** In-Memory tests ** -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test"/>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+
+            <property name="hibernate.show_sql" value="true" />
+
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="EnterpriseMusicStoreIntegrationTest" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <mapping-file>META-INF/queries.xml</mapping-file>
+        <jar-file>${basedir}/../domain/target</jar-file> <!-- Apply Maven resource filtering to set the directory containing entities (see POM) -->
+        <!--<class>org.musicstore.domain.entities.Album</class>-->
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <properties>
+
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+
+            <!-- ** Tests against a real database ** -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/musicstore"/>
+
+            <!--Use standardized JPA 2.1 properties to create the DB from SQL scripts-->
+            <!--This is used to simulate a dedicated test database. After initial creation these lines should be commented-->
+            <!--<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+            <!--<property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>-->
+            <!--<property name="javax.persistence.schema-generation.scripts.create-target" value="./create-db.sql"/>-->
+            <!--<property name="javax.persistence.schema-generation.scripts.drop-target" value="./drop-db.sql"/>-->
+            <!--<property name="javax.persistence.schema-generation.create-source" value="script"/>-->
+            <!--<property name="javax.persistence.schema-generation.create-script-source" value="create-db.sql"/>-->
+            <!--<property name="javax.persistence.schema-generation.drop-source" value="script"/>-->
+            <!--<property name="javax.persistence.schema-generation.drop-script-source" value="create-db.sql"/>-->
+
+            <!--Use a proprietary feature of Hibernate to validate mapping metadata against the database-->
+            <!--<property name="hibernate.hbm2ddl.auto" value="validate" />-->
+
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+
+        </properties>
+    </persistence-unit>
+</persistence>

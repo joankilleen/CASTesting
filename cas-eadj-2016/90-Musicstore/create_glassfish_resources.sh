@@ -1,0 +1,2 @@
+asadmin create-jdbc-connection-pool --datasourceclassname org.apache.derby.jdbc.ClientDataSource --restype javax.sql.DataSource --property ServerName=localhost:Port=1527:DatabaseName=musicstore:User=app:Password=app:ConnectionAttributes=create\\=true jdbc/musicstorePool
+asadmin create-jdbc-resource --connectionpoolid jdbc/musicstorePool jdbc/musicstore

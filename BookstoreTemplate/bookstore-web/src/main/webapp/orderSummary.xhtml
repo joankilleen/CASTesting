@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite/components"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="template.xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+            <ui:define name="header">
+                <ui:include src="header.xhtml">
+                    <ui:param name="pageHeading" value="#{texts.orderSummary}" rendered="#{not empty shoppingCart.items}"/>
+                </ui:include>
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="orderSummary" rendered="#{not empty shoppingCart.items}">
+                    <!--ui:include src="/addressMask.xhtml"/-->
+                    <cc:outputPerson value="#{orderBean}" customer="#{orderBean.customer}" address="#{orderBean.address}"/>
+                    <h:commandButton value="#{texts.change}" action="customerDetails"/>
+                    <h:dataTable value="#{shoppingCart.items}" var="item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.title}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.book.title}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.unitPrice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.book.price}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.quantity}"/>
+                            </f:facet>
+                            <h:outputText id="quantity" value="#{item.quantity}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.itemPrice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.price}"/>                       
+                        </h:column>
+                    </h:dataTable>
+                    <h:panelGrid columns="1">
+                        <h:outputText styleClass="important" value ="#{texts.totalPrice}: #{shoppingCart.totalPrice}"/>   
+                        <h:commandButton value="#{texts.orderSubmit}" action="#{orderBean.createOrder()}"/>
+                    </h:panelGrid>
+                </h:form>
+                <h:form id="orderConfirm" rendered="#{empty shoppingCart.items}">
+                    <h:outputText value="#{texts.confirmOrder}"/>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{texts.orderNumber}"/>
+                        <h:outputText value="#{orderBean.orderDTO.number}"/>
+                        <h:outputText value="#{texts.orderDate}"/>
+                        <h:outputText value="#{orderBean.orderDTO.date}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
+                        <h:outputText value="#{texts.orderAmount}"/>
+                        <h:outputText value="#{orderBean.orderDTO.amount}">
+                            <f:convertNumber pattern="$#,##0.00"/>
+                        </h:outputText>
+                        <h:outputText value="#{texts.orderState}"/>
+                        <h:outputText value="#{orderBean.orderDTO.status}"/>
+                        <h:outputText value=" "/>
+                        <h:outputText value=" "/>
+                        <h:outputText value=" "/>
+                        <h:outputText value=" "/>
+                        <h:commandLink value="#{texts.startPage}" action="catalogSearch"/>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>         
+    </h:body>
+
+</html>
+

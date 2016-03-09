@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:body>
+        <ui:composition template="template.xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+            <ui:define name="header">
+                <ui:include src="header.xhtml">
+                    <ui:param name="pageHeading" value="#{texts.catalogSearch}"/>
+                </ui:include>
+            </ui:define>  
+            <ui:define name="content">
+                <h:form id="main">
+                    <h:panelGrid columns ="4">
+                        <h:outputLabel for="keywords" value="#{texts.keywords}"/>
+                        <h:inputText id="keywords" value="#{catalogBean.keywords}" required="true"
+                                     requiredMessage="#{texts.enterAValue}"/>
+                        <h:commandButton value="#{texts.searchBook}" action="#{catalogBean.searchBook()}"/>
+                        <h:message for="keywords" infoClass="info" errorClass="error"/>
+                        
+                    </h:panelGrid>
+                    <h:dataTable value="#{catalogBean.books}" var="book" rendered="#{not empty catalogBean.books}">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.title}"/>
+                            </f:facet>
+                            <h:commandLink
+                                action="#{catalogBean.selectBook(book)}"
+                                value="#{book.title}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.isbn}"/>
+                            </f:facet>
+                            <h:outputText value="#{book.isbn}"/>                       
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.price}"/>
+                            </f:facet>
+                            <h:outputText value="#{book.price}"/>                       
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:commandButton value="#{texts.addToCart}" action="#{shoppingCart.addItem(book)}"/>                       
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+                         
+    </h:body>
+</html>
+

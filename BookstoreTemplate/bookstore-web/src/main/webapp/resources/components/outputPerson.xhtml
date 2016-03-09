@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:interface>
+            <cc:attribute name="value" required="true"/>
+            <cc:attribute name="customer" required="true"/>
+            <cc:attribute name="address" required="true"/>
+        </cc:interface>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:panelGrid columns="3">
+            <h:outputLabel id="customerNameTitle" value="#{texts.customerName}"/>&#xa0;
+            <h:outputLabel id="customerName" value="#{cc.attrs.value.customerName}"/>
+            <h:outputLabel id="customerEmailTitle" value="#{texts.customerEmail}"/>&#xa0;
+            <h:outputLabel id="customerEmail" value="#{cc.attrs.customer.email}"/>
+            <h:outputLabel id="customerAddressTitle" value="#{texts.customerAddress}"/>&#xa0;
+            <h:outputLabel id="customerAddressStreet" value="#{cc.attrs.address.street}"/>                
+            <h:outputLabel value="  "/>
+            <h:outputLabel value="  "/>
+            <h:outputLabel id="customerAddressCity" value="#{cc.attrs.address.city}"/>                
+            <h:outputLabel value="  "/>
+            <h:outputLabel value="  "/>
+            <h:outputLabel id="customerAddressPostCode" value="#{cc.attrs.address.postalCode}"/>                
+            <h:outputLabel value="  "/>
+            <h:outputLabel value="  "/>
+            <h:outputLabel id="customerAddressCounty" value="#{cc.attrs.address.country}"/>                
+            <h:outputLabel id="creditCardTitle" value="#{texts.creditCard}"/>&#xa0;
+            <h:outputLabel id="creditCardType" value="#{cc.attrs.value.customerCreditCardType}"/>
+            <h:outputLabel value="  "/>
+            <h:outputLabel value="  "/>
+            <h:outputLabel id="creditCardNumber" value="#{cc.attrs.value.customerCreditCardNumber}"/>
+            <h:outputLabel value="  "/>
+            <h:outputLabel value="  "/>
+            <h:outputLabel id="creditCardExpiry" value="#{cc.attrs.value.customerCreditCardExpiry}"/>
+        </h:panelGrid>
+    </cc:implementation>
+</html>
+

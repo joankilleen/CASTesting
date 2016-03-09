@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>EnterpriseMusicStore</artifactId>
+        <groupId>org.musicstore</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    
+    <groupId>org.musicstore</groupId>
+    <artifactId>EnterpriseMusicStore-ear</artifactId>
+    <packaging>ear</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>EnterpriseMusicStore</name>
+
+    <properties>
+        <web-artefactId>EnterpriseMusicStore-web</web-artefactId>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.musicstore</groupId>
+            <artifactId>EnterpriseMusicStore-ejb</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>org.musicstore</groupId>
+            <artifactId>${web-artefactId}</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <version>6</version>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <applicationName>EnterpriseMusicStore</applicationName>
+                    <unpackTypes>rar,war,ejb</unpackTypes>
+                    <modules>
+                        <ejbModule>
+                            <groupId>org.musicstore</groupId>
+                            <artifactId>EnterpriseMusicStore-ejb</artifactId>
+                            <bundleFileName>EnterpriseMusicStore-ejb.jar</bundleFileName>
+                        </ejbModule>
+                        <webModule>
+                            <groupId>org.musicstore</groupId>
+                            <artifactId>${web-artefactId}</artifactId>
+                            <bundleFileName>EnterpriseMusicStore-web.war</bundleFileName>
+                            <contextRoot>/musicstore</contextRoot>
+                        </webModule>
+                    </modules>
+                    <outputDirectory>deployments</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+        <finalName>EnterpriseMusicStore-ear.ear</finalName>  <!--For exploded deployment from IntelliJ to JBoss the directory has to end with .ear-->
+    </build>
+
+
+    <profiles>
+        <profile>
+            <id>jsfunit</id>
+            <!--
+             This profile packages the jsfunit WAR instead of the production WAR to enable tests
+            -->
+            <properties>
+                <web-artefactId>EnterpriseMusicStore-web-jsfunit</web-artefactId>
+            </properties>
+        </profile>
+    </profiles>
+
+
+</project>

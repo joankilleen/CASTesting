@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+    <book id="1000" isbn="143024626X" title="Beginning Java EE 7 (Expert Voice in Java)" authors="Antonio Goncalves"
+          publisher="Apress" publicationyear="2013" binding="Paperback" numberofpages="608" price="49.99"/>
+    <book id="1001" isbn="1449370179" title="Java EE 7 Essentials" authors="Arun Gupta"
+          publisher="O'Reilly Media" publicationyear="2013" binding="Paperback" numberofpages="362" price="49.99"/>
+    <book id="1002" isbn="0071837345" title="Java EE 7: The Big Picture" authors="Dr. Danny Coward"
+          publisher="McGraw-Hill Osborne Media" publicationyear="2014" binding="Paperback" numberofpages="512" price="50.00"/>
+    <book id="1003" isbn="1300149310" title="Real World Java EE Patterns-Rethinking Best Practices" authors="Adam Bien"
+          publisher="lulu.com" publicationyear="2012" binding="Paperback" numberofpages="432" price="51.91"/>
+    <book id="1004" isbn="0596158025" title="Enterprise JavaBeans 3.1" authors="Andrew Lee Rubinger, Bill Burke"
+          publisher="O'Reilly Media" publicationyear="2010" binding="Paperback" numberofpages="766" price="54.99"/>
+    <book id="1005" isbn="1935182994" title="EJB 3 in Action" authors="Debu Panda, Reza Rahman, Ryan Cuprak, Michael Remijan"
+          publisher="Manning Publications" publicationyear="2014" binding="Hardcover" numberofpages="560" price="54.99"/>
+    <book id="1006" isbn="1430246928" title="Beginning EJB 3, Java EE, 7th Edition" authors="Jonathan Wetherbee, Raghu Kodali, Chirag Rathod, Peter Zadrozny"
+          publisher="Manning Apress" publicationyear="2013" binding="Hardcover" numberofpages="452" price="49.99"/>
+    <book id="1007" isbn="1430249269" title="Pro JPA 2 (Expert's Voice in Java)" authors="Mike Keith, Merrick Schincariol"
+          publisher="Apress" publicationyear="2013" binding="Paperback" numberofpages="508" price="54.99"/>
+    <book id="1008" isbn="1782176462" title="Mastering JavaServer Faces 2.2" authors="Anghel Leonard"
+          publisher="Packt Publishing - ebooks Account" publicationyear="2014" binding="Paperback" numberofpages="501" price="59.99"/>
+    <book id="1009" isbn="0133795748" title="Core JavaServer Faces (4th Edition) (Core Series)" authors="David Geary, Cay S. Horstmann, Marty Hall"
+          publisher="Prentice Hall" publicationyear="2015" binding="Paperback" numberofpages="672" price="59.99"/>
+    <book id="1010" isbn="1449365116" title="Java Web Services: Up and Running"  authors="Martin Kalin"
+          publisher="O'Reilly Media" publicationyear="2013" binding="Paperback" numberofpages="360" price="39.99"/>
+    <book id="1011" isbn="144936134X" title="RESTful Java with JAX-RS 2.0"  authors="Bill Burke"
+          publisher="O'Reilly Media" publicationyear="2013" binding="Paperback" price="39.99" numberofpages="392" />
+    
+    <customer id="1012" customernumber="6012" firstname="Alice" lastname="Smith" email="alice@example.org" street="123 Maple Street" city="Mill Valley" postalcode="CA 90952" 
+              country="US" cardtype="MasterCard" number="5100000000000005" expirationmonth="01" expirationyear="2018" />
+    <customer id="1013" customernumber="6013" firstname="Lars" lastname="Gisler" email="gisler@example.org" street="Luzernstrasse 1" city="Luzern" postalcode="LU 6000" 
+              country="CH" cardtype="MasterCard" number="5100000000000006" expirationmonth="02" expirationyear="2019" />
+    <customer id="1014" customernumber="6014" firstname="Susanne" lastname="Metre" email="susanne@example.org" street="Lausanneweg 22" city="Lausanne" postalcode="VD 1000" 
+              country="CH" cardtype="MasterCard" number="5100000000000007" expirationmonth="01" expirationyear="2020" />
+    <customer id="1015" customernumber="6015" firstname="Ruth" lastname="Hunziker" email="ruth@example.org" street="Langenthalweg 122" city="Langenthal" postalcode="BE 4900" 
+              country="CH" cardtype="MasterCard" number="5100000000000008" expirationmonth="05" expirationyear="2021" />
+    <customer id="1016" customernumber="6016" firstname="Franz" lastname="Klammer" email="franz@example.org" street="Oltenweg 12" city="Olten" postalcode="BE 4800" 
+              country="CH" cardtype="Visa" number="4200000000000008" expirationmonth="10" expirationyear="2031" />
+    <customer id="1017" customernumber="6017" firstname="Anna" lastname="Kessler" email="anna@example.ch" street="Bahnhofstrasse 2" city="Chur" postalcode="GR 9001" 
+              country="CH" cardtype="Visa" number="42200000000000008" expirationmonth="12" expirationyear="2021" />
+    <customer id="1018" customernumber="6018" firstname="Evi" lastname="Strocker" email="evi@example.de" street="Mittelwstrasse 314" city="Bonaduz" postalcode="GR 9012" 
+              country="CH" cardtype="Visa" number="4200000000000008" expirationmonth="01" expirationyear="2021" />
+    <customer id="1019" customernumber="6019" firstname="Toni" lastname="Beckenbauer" email="toni@example.de" street="Bayernweg 10" city="München" postalcode="DE 80000" 
+              country="DE" cardtype="Visa" number="4200000000000008" expirationmonth="02" expirationyear="2051" />
+    <customer id="1020" customernumber="6020" firstname="James" lastname="Bond" email="james777@example.en" street="Geheimweg 7" city="London" postalcode="GB 7777" 
+              country="GB" cardtype="Visa" number="4200000000000008" expirationmonth="07" expirationyear="2077" />
+
+   
+    <login id="1000" userName="alice@example.org" password="1234" />
+    <login id="1001" userName="gisler@example.org" password="4321" />
+    <login id="1002" userName="susanne@example.org" password="9876" />
+    <login id="1003" userName="bhmail2@bfh.ch" password="6789" />
+    <login id="1004" userName="ruth@example.org" password="1122" />
+    <login id="1005" userName="franz@example.org" password="2233" />
+    <login id="1006" userName="anna@example.ch" password="3344" />
+    <login id="1007" userName="evi@example.de" password="4455" />
+    <login id="1008" userName="toni@example.de" password="6688" />
+    <login id="1009" userName="james777@example.en" password="7777" />
+    
+    <orderentity id="1020" amount="202.20" date="2014-12-15" ordernumber="202020" status="processing"
+                 street="Glenard 22" city="Galway" postalcode="2222" country="IE"  cardtype="MasterCard" number="400000000000022" expirationmonth="02" expirationyear="2019"  
+                 customer_id="1014"/>
+    <orderentity id="1021" amount="102.35" date="2015-11-15" ordernumber="202021" status="processing"
+                 street="Bahnhofstrasse 8" city="Olten" postalcode="4800" country="CH" cardtype="MasterCard" number="400000000000055" expirationmonth="01" expirationyear="2018"  
+                 customer_id="1020"/>
+    <orderentity id="1022" amount="10.99" date="2010-01-15" ordernumber="202022" status="processing"
+                 street="Engehalde 37" city="Bern" postalcode="3003" country="CH" cardtype="Visa" number="500000000000055" expirationmonth="05" expirationyear="2022"  
+                 customer_id="1019"/>
+    <orderentity id="1024" amount="10.99" date="2010-01-15" ordernumber="202023" status="shipped"
+                 street="Engehalde 37" city="Bern" postalcode="3003" country="CH" cardtype="Visa" number="500000000000055" expirationmonth="05" expirationyear="2022"  
+                 customer_id="1019"/>
+    <orderitem id="1021" price="98.98" quantity="2" book_id="1001" order_id="1020"/>
+    <orderitem id="1022" price="33.56" quantity="1" book_id="1008" order_id="1021"/>
+    <orderitem id="1023" price="10.99" quantity="1" book_id="1011" order_id="1022"/>
+    <orderitem id="1025" price="10.99" quantity="1" book_id="1011" order_id="1024"/>
+</dataset>

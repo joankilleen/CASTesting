@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">  
+    <h:body>
+        <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+            <h:panelGrid columns="1">
+                <h:panelGroup>
+                    <h:form id="localemanager">
+                        <h:commandLink
+                            action="#{localeBean.changeLocale(texts.de)}"
+                            value="#{texts.german}"/>&#xa0;
+                        <h:commandLink
+                            action="#{localeBean.changeLocale(texts.en)}"
+                            value="#{texts.english}"/>
+                    </h:form>
+                </h:panelGroup>
+                <h:outputText value="#{texts.bookstore}" class="title" />               
+                <h:panelGroup>
+                    <h:form id="nav">
+                        <h:link value="#{texts.catalogSearch}" outcome="catalogSearch" ></h:link>&#xa0;
+                        <h:link value="#{texts.shoppingCart}(#{shoppingCart.size})" outcome="shoppingCart" disabled="#{shoppingCart.size eq 0}"></h:link>&#xa0;
+                        <h:commandLink value="#{texts.checkOut}" action="#{accountBean.checkOut}" disabled="#{shoppingCart.size eq 0}">
+                            <f:setPropertyActionListener target="#{accountBean.navigationCase}" value="checkOut"/>
+                        </h:commandLink>&#xa0;
+                        <h:commandLink value="#{texts.account}" action="#{accountBean.account}" >
+                            <f:setPropertyActionListener target="#{accountBean.navigationCase}" value="account"/>
+                        </h:commandLink>&#xa0;
+                    </h:form>
+                </h:panelGroup>
+                <h:outputText value="#{pageHeading}" styleClass="heading"/>
+            </h:panelGrid>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:cc="http://xmlns.jcp.org/jsf/composite/components"
+                xmlns:books="http://books.org/jsf/taglib"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="header">
+        <ui:include src="header.xhtml">
+            <ui:param name="pageHeading" value="#{texts.customerDetails}"/>
+        </ui:include>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="nmain">    
+            <h:panelGrid columns="3">
+                <h:outputLabel id="firstNameTitle" value="#{texts.customerFirstName}"/>
+                <h:inputText id="firstName" value="#{accountBean.authCustomer.firstName}" required="true" />
+                <h:message for="firstName" styleClass="error"/>
+                <h:outputLabel id="lastNameTitle" value="#{texts.customerLastName}"/>
+                <h:inputText id="lastName" value="#{accountBean.authCustomer.lastName}" required="true" />
+                <h:message for="lastName" styleClass="error"/>
+                <h:outputLabel id="emailTitle" value="#{texts.customerEmail}"/>
+                <h:inputText id="email" value="#{accountBean.authCustomer.email}" required="true">
+                    <books:validateEmail/>
+                </h:inputText>
+                <h:message for="email" styleClass="error"/>
+            </h:panelGrid>
+            <h:outputLabel id="addressTitle" value="#{texts.customerAddress}" styleClass="subheading"/>
+            <cc:inputAddress value="#{accountBean.authCustomer.address}"/>
+            <h:outputLabel id="creditCartTitle" value="#{texts.creditCard}" styleClass="subheading"/>
+            <cc:inputCreditCard value="#{accountBean.authCustomer.creditCard}"/>
+            <h:commandButton value="#{texts.save}" action="#{accountBean.saveCustomer}"/>&#xa0;
+            <h:commandButton value="#{texts.cancel}" action="#{accountBean.navigate}" immediate="true"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

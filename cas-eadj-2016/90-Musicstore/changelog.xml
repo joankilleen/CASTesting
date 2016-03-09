@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"/>
+    <changeSet author="jbandi (generated)" id="1421547490718-1">
+        <createTable tableName="ALBUM">
+            <column name="ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ALBUMARTURL" type="VARCHAR(255)"/>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="PRICE" type="DOUBLE"/>
+            <column name="TOTALAMOUNT" type="DOUBLE"/>
+            <column name="GENRE_ID" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-2">
+        <createTable tableName="GENRE">
+            <column name="ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-3">
+        <createTable tableName="MUSICORDER">
+            <column name="ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CITY" type="VARCHAR(255)"/>
+            <column name="COUNTRY" type="VARCHAR(255)"/>
+            <column name="EMAIL" type="VARCHAR(255)"/>
+            <column name="FINALAMOUNT" type="DOUBLE"/>
+            <column name="FIRSTNAME" type="VARCHAR(255)"/>
+            <column name="LASTNAME" type="VARCHAR(255)"/>
+            <column name="STREET" type="VARCHAR(255)"/>
+            <column name="ZIP" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-4">
+        <createTable tableName="ORDERITEM">
+            <column name="ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ALBUM_ID" type="BIGINT"/>
+            <column name="ORDERITEMS_ID" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-5">
+        <createTable tableName="SEQUENCE">
+            <column name="SEQ_NAME" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQ_COUNT" type="DECIMAL(15)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-6">
+        <insert tableName="ALBUM">
+            <column name="ID" valueNumeric="5"/>
+            <column name="ALBUMARTURL" value="torch_songs.jpg"/>
+            <column name="NAME" value="Torch Songs"/>
+            <column name="PRICE" valueNumeric="12.0"/>
+            <column name="TOTALAMOUNT" valueNumeric="0.0"/>
+            <column name="GENRE_ID" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-7">
+        <insert tableName="ALBUM">
+            <column name="ID" valueNumeric="4"/>
+            <column name="ALBUMARTURL" value="hells_bells.jpg"/>
+            <column name="NAME" value="Hells Bells"/>
+            <column name="PRICE" valueNumeric="10.0"/>
+            <column name="TOTALAMOUNT" valueNumeric="0.0"/>
+            <column name="GENRE_ID" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-8">
+        <insert tableName="ALBUM">
+            <column name="ID" valueNumeric="6"/>
+            <column name="ALBUMARTURL" value="beautiful_garbage.jpg"/>
+            <column name="NAME" value="Beautiful Garbage"/>
+            <column name="PRICE" valueNumeric="9.0"/>
+            <column name="TOTALAMOUNT" valueNumeric="0.0"/>
+            <column name="GENRE_ID" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-9">
+        <insert tableName="GENRE">
+            <column name="ID" valueNumeric="3"/>
+            <column name="NAME" value="Pop"/>
+        </insert>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-10">
+        <insert tableName="GENRE">
+            <column name="ID" valueNumeric="2"/>
+            <column name="NAME" value="Jazz"/>
+        </insert>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-11">
+        <insert tableName="GENRE">
+            <column name="ID" valueNumeric="1"/>
+            <column name="NAME" value="Rock"/>
+        </insert>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-12">
+        <insert tableName="SEQUENCE">
+            <column name="SEQ_NAME" value="SEQ_GEN"/>
+            <column name="SEQ_COUNT" valueNumeric="50"/>
+        </insert>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-13">
+        <addPrimaryKey columnNames="SEQ_NAME" constraintName="SQL150117224745550" tableName="SEQUENCE"/>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-14">
+        <addPrimaryKey columnNames="ID" constraintName="SQL150118021948290" tableName="GENRE"/>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-15">
+        <addPrimaryKey columnNames="ID" constraintName="SQL150118021948300" tableName="MUSICORDER"/>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-16">
+        <addPrimaryKey columnNames="ID" constraintName="SQL150118021948301" tableName="ORDERITEM"/>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-17">
+        <addPrimaryKey columnNames="ID" constraintName="SQL150118021948310" tableName="ALBUM"/>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-18">
+        <addForeignKeyConstraint baseColumnNames="GENRE_ID" baseTableName="ALBUM" constraintName="FK_ALBUM_GENRE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="GENRE"/>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-19">
+        <addForeignKeyConstraint baseColumnNames="ALBUM_ID" baseTableName="ORDERITEM" constraintName="ORDERITEM_ALBUM_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="ALBUM"/>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-20">
+        <addForeignKeyConstraint baseColumnNames="ORDERITEMS_ID" baseTableName="ORDERITEM" constraintName="RDRITEMRDERITEMSID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="MUSICORDER"/>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-21">
+        <createIndex indexName="SQL150118021948311" tableName="ORDERITEM" unique="false">
+            <column name="ALBUM_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-22">
+        <createIndex indexName="SQL150118021948320" tableName="ORDERITEM" unique="false">
+            <column name="ORDERITEMS_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1421547490718-23">
+        <createIndex indexName="SQL150118021948321" tableName="ALBUM" unique="false">
+            <column name="GENRE_ID"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

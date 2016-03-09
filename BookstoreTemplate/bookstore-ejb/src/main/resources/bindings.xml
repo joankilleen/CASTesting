@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<bindings xmlns="http://java.sun.com/xml/ns/jaxws">
+    <enableAsyncMapping>true</enableAsyncMapping>
+    <enableWrapperStyle>false</enableWrapperStyle>
+
+    <handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+        <handler-chain>
+            <handler>
+                <handler-name>AmazonSecurityHandler</handler-name>
+                <handler-class>org.amazon.util.AmazonSecurityHandler</handler-class>
+            </handler>
+            <handler>
+                <handler-name>LoggingHandler2</handler-name>
+                <handler-class>org.amazon.util.LoggingHandler</handler-class>
+            </handler>
+        
+        </handler-chain>
+    </handler-chains>
+</bindings>

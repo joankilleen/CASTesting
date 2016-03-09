@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite/components"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="template.xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+            <ui:define name="header">
+                <ui:include src="header.xhtml">
+                    <ui:param name="pageHeading" value="#{texts.orderDetails}"/>
+                </ui:include>
+            </ui:define>  
+            <ui:define name="content">
+                <h:form id="detail">
+                    <!--ui:include src="/addressMask.xhtml"/-->
+                    <cc:outputPerson value="#{orderBean}" customer="#{orderBean.customer}" address="#{orderBean.address}"/>
+                    <br></br><br></br>
+                    <h:dataTable value="#{orderBean.orderDTO.orderItems}" var="item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.title}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.book.title}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.unitPrice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.book.price}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.quantity}"/>
+                            </f:facet>
+                            <h:outputText id="quantity" value="#{item.quantity}" />
+                        </h:column>
+                    </h:dataTable>
+                    <br></br>
+                    <h:outputText styleClass="important" value ="#{texts.totalPrice}: #{orderBean.totalPrice}"/>   
+                    <br></br><br></br>
+                    <h:commandLink value="#{texts.backLink}" action="accountDetails"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

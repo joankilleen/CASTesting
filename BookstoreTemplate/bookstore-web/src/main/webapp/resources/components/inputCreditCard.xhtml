@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:books="http://books.org/jsf/taglib"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:interface>
+		<cc:attribute name="value" required="true"/>
+	</cc:interface>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:panelGrid columns="3">
+                <h:outputText value="#{texts.cardType}"/>
+                <h:selectOneMenu id="cardType" value="#{cc.attrs.value.type}" required="true">
+                    <f:selectItem itemValue=""/>
+                    <f:selectItems value="#{creditCardHelper.cardTypes}"/>
+                </h:selectOneMenu>
+                <h:message for="cardType" styleClass="error"/>
+                <h:outputLabel value="#{texts.cardNumber}"/>
+                <h:inputText id="cardNumber" value="#{cc.attrs.value.number}" required="true" >
+                    <f:converter converterId="org.books.presentation.CreditCardNumberConverter"/>
+                    <books:validateCreditCardNumber cardTypeId="cardType"/>
+                </h:inputText>
+                <h:message for="cardNumber" styleClass="error"/>
+                <h:outputLabel value="#{texts.expirationDate}"/>
+                <h:panelGroup>
+                    <h:selectOneMenu id="expirationMonth" value="#{cc.attrs.value.expirationMonth}" required="true">
+                        <f:selectItem itemValue=""/>
+                        <f:selectItems value="#{creditCardHelper.expirationMonths}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value=" / "/>
+                    <h:selectOneMenu id="expirationYear" value="#{cc.attrs.value.expirationYear}" required="true">
+                        <f:selectItem itemValue=""/>
+                        <f:selectItems value="#{creditCardHelper.expirationYears}"/>
+                    </h:selectOneMenu>
+                    <h:panelGroup>
+                        <h:message for="expirationMonth"/>&#xa0;     
+                        <h:message for="expirationYear"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </h:panelGrid>
+    </cc:implementation>
+</html>

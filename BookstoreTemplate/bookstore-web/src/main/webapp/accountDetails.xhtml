@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite/components"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <ui:composition template="template.xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+            <ui:define name="header">
+                <ui:include src="header.xhtml">
+                    <ui:param name="pageHeading" value="#{texts.account}"/>
+                </ui:include>
+            </ui:define>  
+            <ui:define name="content">
+                <h:form id="accountview">                    
+                    <!--ui:include src="/addressMask.xhtml"/-->
+                    <cc:outputPerson value="#{accountBean}" customer="#{accountBean.authCustomer}" address="#{accountBean.authCustomer.address}"/>
+                    <br></br>
+                    <h:panelGroup>
+                        <h:link outcome="customerDetails" value="#{texts.change}"></h:link>&#xa0;
+                        <h:link outcome="changePassword" value="#{texts.changePassword}"/>&#xa0;
+                        <h:commandLink immediate="true" action="#{accountBean.signOut()}" value="#{texts.signOut}"/>&#xa0;
+                    </h:panelGroup>
+                    <br></br><br></br>
+                    <h:outputText value="#{texts.orderTitle}" styleClass="subheading"/>
+                    <br></br><br></br>
+                    <h:panelGrid columns ="4">
+                        <h:outputLabel for="searchYear" value="#{texts.orderYear}"/>
+                        <h:inputText id="searchYear" value="#{orderBean.year}" required="true" 
+                                     requiredMessage="#{texts.enterAValue}" 
+                                     validatorMessage="#{texts.invalidYear}" styleClass="orderYear">
+                            <f:validateLongRange minimum="2000"/>
+                        </h:inputText>                            
+                        <h:commandButton value="#{texts.orderSerach}" action="#{orderBean.listOrders()}"/>
+                        <h:message for="searchYear" infoClass="info" errorClass="errorMessage"/>
+                    </h:panelGrid>
+                    <h:dataTable value="#{orderBean.orderInfos}" var="orderInfo" rendered="#{not empty orderBean.orderInfos}">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.orderNumber}"/>
+                            </f:facet>
+                            <h:commandLink
+                                action="#{orderBean.selectOrder(orderInfo)}"
+                                value="#{orderInfo.number}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.orderDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{orderInfo.date}">
+                                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                            </h:outputText>                       
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.orderAmount}"/>
+                            </f:facet>
+                            <h:outputText value="#{orderInfo.amount}">
+                                <f:convertNumber pattern="$#,##0.00"/>
+                            </h:outputText>                       
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{texts.orderState}"/>
+                            </f:facet>
+                            <h:outputText value="#{orderInfo.status}"/>                       
+                        </h:column>
+                        <h:column>
+                            <h:commandButton value="#{texts.delete}" immediate="true" 
+                                             action="#{orderBean.cancelOrder(orderInfo.number)}" 
+                                             rendered="#{orderInfo.status == 'processing'}" /> 
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

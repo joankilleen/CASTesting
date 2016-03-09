@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+        http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd" version="2.1">
+    <named-query name="Book.FindByIsbn">
+        <query>
+            select b from BookEntity b where b.isbn =:isbn
+        </query>
+    </named-query>
+    <named-query name="CustomerEntity.FindByEmail">
+        <query>
+            select c from CustomerEntity c where c.email = :email
+        </query>
+    </named-query>
+    <named-query name="CustomerEntity.FindByNumber">
+        <query>
+            select c from CustomerEntity c where c.number = :number
+        </query>
+    </named-query>
+    <named-query name="CustomerEntity.FindByNameToken">
+        <query>
+            select new org.books.data.dto.CustomerInfo(c.number, c.firstName, c.lastName, c.email) from CustomerEntity c where UPPER(c.firstName) like upper(concat('%',:nametoken,'%')) or UPPER(c.lastName) like upper(concat('%',:nametoken,'%'))
+        </query>
+    </named-query>
+    <named-query name="CustomerEntity.FindMaxNumber">
+        <query>
+            select max(c.number) from CustomerEntity c 
+        </query>
+    </named-query>
+    <named-query name="Order.FindByNumber">
+        <query>
+            select o from OrderEntity o where o.number = :number</query>
+    </named-query>
+    <named-query name="Order.FindMaxNumber">
+        <query>
+            select max(o.number) from OrderEntity o 
+        </query>
+    </named-query>
+    <named-query name="Order.FindByYearAndCustomer">
+        <query>
+            select new org.books.data.dto.OrderInfo(o.number, o.date, o.amount, o.status) from OrderEntity o join o.customer c 
+            where c.number=:cust_num and o.date between :date_from and :date_to
+        </query>
+    </named-query>
+    <named-query name="LoginEntity.ByUserName">
+        <query>
+            select l from LoginEntity l where l.userName = :userName
+        </query>
+    </named-query>
+</entity-mappings>
+

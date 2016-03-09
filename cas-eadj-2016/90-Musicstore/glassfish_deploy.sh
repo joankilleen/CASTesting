@@ -1,0 +1,1 @@
+asadmin deploy --force=true EnterpriseMusicstore-ear/deployments/*.ear

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         version="3.2"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/ejb-jar_3_2.xsd">
+    <enterprise-beans>
+        <message-driven>
+            <ejb-name>
+                OrderProcessorBean
+            </ejb-name>
+            <env-entry>
+                <env-entry-name>timer</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <env-entry-value>1</env-entry-value>
+            </env-entry>
+        </message-driven>
+        <session>
+            <ejb-name>
+                OrderService
+            </ejb-name>
+            <env-entry>
+                <env-entry-name>creditCardLimit</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <env-entry-value>1000</env-entry-value>
+            </env-entry>
+        </session>
+        
+       
+    </enterprise-beans>
+</ejb-jar>

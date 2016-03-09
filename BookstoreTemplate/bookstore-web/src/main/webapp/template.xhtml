@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{texts.applicationTitle}</title>
+        <h:outputStylesheet name="styles.css"/>
+    </h:head>
+    <f:view locale="#{localeBean.locale}"/> 
+        <h:body>
+            <h:panelGrid columns="3">
+                <h:graphicImage name="book2.jpg" />
+                <h:panelGrid columns="1">
+                    <ui:insert name="header">
+                        Header
+                    </ui:insert>
+                    <ui:insert name="content">
+                        Empty content
+                    </ui:insert>
+                    <h:messages globalOnly="true" errorStyle="error" infoClass="info"></h:messages>
+                </h:panelGrid> 
+            </h:panelGrid>
+        </h:body>
+</html>
+
